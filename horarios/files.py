@@ -91,5 +91,17 @@ def iter_files(list_files, df_obs, downloads):
                 for i in range(len(cols)):
                     main_dict[cols[i]].append(fila[i]) 
         
+        #agregar las observaciones de los dias que no marcó
+        p_gen = df_obs.iterrows()        
+        for o in p_gen:
+            nan = o[1][1]
+            fecha2, _ = str(o[1][2]).split(' ')
+            if fecha2 not in temp.keys() and nombre == o[1][0]:
+                obs = o[1][1]
+                
+               
+                fila = [fecha2, '----', '----' , '----', obs, nombre]
+                for i in range(len(cols)):
+                    main_dict[cols[i]].append(fila[i])
     return main_dict
 
